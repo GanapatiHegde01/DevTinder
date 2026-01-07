@@ -1,7 +1,11 @@
 const express = require("express");
 const connectDB = require("./config/database");
-const { auth } = require("./middlewares/auth");
+const { userAuth } = require("./middlewares/auth");
+const bcrypt = require("bcrypt");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 const User = require("./models/user");
+
 const app = express();
 
 connectDB()
@@ -16,17 +20,18 @@ connectDB()
   });
 
 app.use(express.json());
+app.use(cookieParser());
 
-app.post("/signup", async (req, res) => {
-  const user = new User(req.body);
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const request = require("./routes/connection");
 
-  try {
-    await user.save();
-    res.send("User added successfully");
-  } catch (err) {
-    res.status(400).send("Failed to add user:" + err.message);
-  }
-});
+app.use("/", authRouter);
+app.use("/", profileRouter);
+app.use("/", request);
+
+
+
 
 app.get("/feed", async (req, res) => {
   try {
@@ -57,33 +62,6 @@ app.put("/user", async (req, res) => {
   }
 });
 
-app.patch("/user", async (req, res) => {
-  try {
-    const { firstName, lastName, emailId, password, gender, age } = req.body;
-    const userUpdated = await User.updateMany(
-      { firstName: firstName },
-
-      {
-        $set: {
-          firstName: firstName,
-          lastName: lastName,
-          emailId: emailId,
-          password: password,
-          gender: gender,
-          age: age,
-        },
-      },
-      {
-        runValidators: true,
-      }
-    );
-
-    res.send(`Updated ${userUpdated.modifiedCount} User`);
-  } catch (err) {
-    res.status(400).send("Someting went wrong" + err.message);
-  }
-});
-
 app.delete("/user", async (req, res) => {
   try {
     const { gender } = req.body;
@@ -101,7 +79,7 @@ app.get(
   (req, res, next) => {
     throw new Error();
   },
-  auth,
+
   (req, res) => {
     console.log("Hey admin");
     res.send("Hello Admin");

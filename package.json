@@ -21,7 +21,11 @@
   },
   "homepage": "https://github.com/GanapatiHegde01/DevTinder#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
-    "mongoose": "^9.0.2"
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.0.2",
+    "validator": "^13.15.26"
   }
 }
