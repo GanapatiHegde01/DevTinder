@@ -1,9 +1,6 @@
 const express = require("express");
 const connectDB = require("./config/database");
-const { userAuth } = require("./middlewares/auth");
-const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 
 const app = express();
@@ -33,6 +30,14 @@ app.use("/", request);
 
 
 
+
+
+
+
+
+
+
+
 app.get("/feed", async (req, res) => {
   try {
     const emailUser = req.body.emailId;
@@ -47,20 +52,6 @@ app.get("/feed", async (req, res) => {
   }
 });
 
-app.put("/user", async (req, res) => {
-  try {
-    const { firstName } = req.body;
-    const userUpdated = await User.updateMany(
-      { firstName: firstName },
-
-      { $set: { age: 29 } }
-    );
-
-    res.send("Updated Age");
-  } catch (err) {
-    res.status(400).send("Someting went wrong" + err.message);
-  }
-});
 
 app.delete("/user", async (req, res) => {
   try {
@@ -74,17 +65,6 @@ app.delete("/user", async (req, res) => {
   }
 });
 
-app.get(
-  "/admin",
-  (req, res, next) => {
-    throw new Error();
-  },
-
-  (req, res) => {
-    console.log("Hey admin");
-    res.send("Hello Admin");
-  }
-);
 
 // Some notes
 

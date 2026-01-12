@@ -1,5 +1,4 @@
 const mongoos = require("mongoose");
-const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt")
 
@@ -46,6 +45,10 @@ const userSchema = mongoos.Schema(
     about: {
       type: String,
       default: "This is default added about",
+    },
+    profileurl: {
+      type: String,
+      default:"https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80"
     },
     skills: {
       type: [String],
