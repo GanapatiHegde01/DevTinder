@@ -11,7 +11,7 @@ const userAuth = async (req, res, next) => {
     if (!token) {
       throw new Error("Token Expired");
     } else {
-      const data = await jwt.verify(token, "Secret@123");
+      const data =  jwt.verify(token, "Secret@123");
 
       const user = await User.findById(data._id);
 
