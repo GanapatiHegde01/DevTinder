@@ -1,0 +1,20 @@
+{
+  "name": "get call",
+  "request": {
+    "type": "http",
+    "url": "https://localhost:7777/user",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    },
+    "pathVariables": []
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "Tinder for devs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GanapatiHegde01/DevTinder.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Ganapati Hegde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GanapatiHegde01/DevTinder/issues"
+  },
+  "homepage": "https://github.com/GanapatiHegde01/DevTinder#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.0.2",
+    "validator": "^13.15.26"
+  }
+}
